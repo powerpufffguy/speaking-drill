@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Drill — Daily English Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --surface2: #f0ede6;
+  --border: #e2ddd5;
+  --border2: #ccc8be;
+  --text: #1a1917;
+  --text2: #6b6760;
+  --text3: #a8a49e;
+  --blue: #1a56db;
+  --blue-bg: #eef2ff;
+  --blue-text: #1e40af;
+  --green: #057a55;
+  --green-bg: #ecfdf5;
+  --green-text: #065f46;
+  --amber: #b45309;
+  --amber-bg: #fffbeb;
+  --amber-text: #92400e;
+  --red: #c81e1e;
+  --red-bg: #fdf2f2;
+  --red-text: #9b1c1c;
+  --gold: #d97706;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+  min-height: 100vh;
+}
+
+/* SCREENS */
+.screen { display: none; }
+.screen.on { display: block; }
+
+/* TOP BAR */
+.topbar {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+.topbar-title { font-size: 15px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.topbar-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
+
+/* NAV TABS */
+.nav {
+  display: flex;
+  gap: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+}
+.nav-btn {
+  flex: 1;
+  padding: 12px 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: color .15s;
+}
+.nav-btn.on { color: var(--blue); border-bottom-color: var(--blue); }
+.nav-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* CONTENT AREA */
+.content { padding: 20px; }
+.panel { display: none; }
+.panel.on { display: block; }
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* SECTION LABEL */
+.lbl {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: block;
+  margin: 18px 0 8px;
+}
+.lbl:first-child { margin-top: 0; }
+
+/* BADGES */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 2px 9px;
+}
+.bi { background: var(--blue-bg); color: var(--blue-text); }
+.bs { background: var(--green-bg); color: var(--green-text); }
+.bw { background: var(--amber-bg); color: var(--amber-text); }
+.bd { background: var(--red-bg); color: var(--red-text); }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  transition: background .12s, opacity .12s;
+}
+.btn:hover { background: var(--surface2); }
+.btn-p { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn-p:hover { opacity: .88; background: var(--blue); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-full { width: 100%; justify-content: center; }
+.btn svg { width: 15px; height: 15px; }
+
+/* FORM ELEMENTS */
+.field { margin-bottom: 12px; }
+.field label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 5px; }
+input[type=text], input[type=password], textarea, .score-in {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color .12s;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus { border-color: var(--blue); }
+textarea { resize: none; line-height: 1.6; }
+.score-in { width: 52px; text-align: center; padding: 6px 8px; }
+.comment-in {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface2);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+.comment-in:focus { border-color: var(--blue); background: var(--surface); }
+
+/* AVATAR */
+.av {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--blue-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600;
+  color: var(--blue-text);
+  flex-shrink: 0;
+}
+
+/* METRIC GRID */
+.met-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.met { background: var(--surface2); border-radius: var(--radius); padding: 12px; }
+.met .v { font-size: 22px; font-weight: 600; color: var(--text); }
+.met .l { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+/* STUDENT ROWS */
+.stu-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.stu-row:last-child { border-bottom: none; }
+.stu-name { font-size: 13px; font-weight: 500; color: var(--text); flex: 1; min-width: 0; }
+.stu-meta { font-size: 11px; color: var(--text3); }
+
+/* DRILL BLOCK */
+.drill-block {
+  font-size: 14px;
+  line-height: 1.9;
+  background: var(--surface2);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+/* QUESTION CHIPS */
+.q-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.chip {
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  cursor: pointer;
+  color: var(--text2);
+  background: var(--surface);
+  transition: all .12s;
+}
+.chip:hover { border-color: var(--blue); color: var(--blue); }
+.chip.on { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+
+/* STARS */
+.stars { display: flex; gap: 3px; }
+.star { font-size: 22px; cursor: pointer; color: var(--border2); transition: color .1s; user-select: none; }
+.star.on { color: var(--gold); }
+
+/* SCOREBOARD */
+.board-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.board-row:last-child { border-bottom: none; }
+.rank { width: 24px; text-align: center; font-size: 13px; font-weight: 600; color: var(--text3); }
+.rank.g { color: var(--gold); }
+.bar-w { flex: 1; height: 6px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.bar { height: 6px; border-radius: 4px; }
+.pts { font-size: 13px; font-weight: 600; color: var(--text); min-width: 54px; text-align: right; }
+
+/* SUGGESTION ITEMS */
+.sug-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.sug-item:last-child { border-bottom: none; }
+.sug-txt { font-size: 13px; color: var(--text); font-weight: 500; }
+.sug-who { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.vote-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text2);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .12s;
+}
+.vote-btn.voted { background: var(--blue-bg); color: var(--blue-text); border-color: transparent; }
+
+/* TAGS */
+.tag-pick { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.tag {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  cursor: pointer;
+  color: var(--text2);
+  background: var(--surface);
+  transition: all .12s;
+}
+.tag.on { background: var(--green-bg); color: var(--green-text); border-color: transparent; }
+
+/* MISTAKE ROWS */
+.mistake-row { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.mistake-row:last-child { border-bottom: none; }
+.err { color: var(--red); font-size: 13px; }
+.fix { color: var(--green); font-size: 12px; margin-top: 4px; }
+
+/* BAR CHART */
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 80px; margin-top: 8px; }
+.bc-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+.bc-bar { width: 100%; background: var(--blue); border-radius: 4px 4px 0 0; min-height: 4px; }
+.bc-lbl { font-size: 10px; color: var(--text3); font-family: 'DM Mono', monospace; }
+
+/* RECORD BUTTON */
+.rec-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  transition: all .12s;
+}
+.rec-btn:hover { background: var(--surface2); }
+.rec-btn.on { background: var(--red-bg); color: var(--red-text); border-color: transparent; }
+.rec-btn svg { width: 16px; height: 16px; }
+
+/* NOTICE */
+.notice {
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--surface2);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* LOGIN CENTER */
+.login-wrap { max-width: 320px; margin: 0 auto; padding: 2rem 20px; }
+.login-logo { text-align: center; margin-bottom: 1.5rem; }
+.login-logo svg { width: 40px; height: 40px; color: var(--blue); }
+.login-logo h1 { font-size: 20px; font-weight: 600; margin-top: 10px; }
+.login-logo p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+/* HOME SCREEN */
+.home-wrap { padding: 3rem 20px 2rem; text-align: center; }
+.home-wrap h1 { font-size: 28px; font-weight: 600; margin: 16px 0 6px; }
+.home-wrap p { font-size: 14px; color: var(--text2); margin-bottom: 2rem; }
+.home-btns { display: flex; flex-direction: column; gap: 10px; max-width: 280px; margin: 0 auto; }
+
+/* POINTS BREAKDOWN */
+.pts-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; color: var(--text2);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pts-row:last-child { border-bottom: none; }
+.pts-val { font-weight: 600; color: var(--text); }
+
+/* STREAK BADGE */
+.streak { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; }
+.streak svg { width: 14px; height: 14px; }
+
+/* RESPONSIVE POLISH */
+@media (max-width: 400px) {
+  .met-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .met .v { font-size: 18px; }
+}
+
+/* ANIMATIONS */
+.screen.on { animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ═══════════════════════════════════════════ HOME -->
+<div class="screen on" id="sc-home">
+  <div class="home-wrap">
+    <div style="font-size: 48px;">🗣️</div>
+    <h1>Speaking Drill</h1>
+    <p>Daily English speaking practice</p>
+    <div class="home-btns">
+      <button class="btn btn-p btn-full" onclick="go('sc-teacher-login')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 19h18M5 19V7l7-4 7 4v12M9 19v-6h6v6"/></svg>
+        Teacher login
+      </button>
+      <button class="btn btn-full" onclick="go('sc-student-login')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Student login
+      </button>
+      <button class="btn btn-full" onclick="go('sc-board-public')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21H5a2 2 0 01-2-2v-3m18 5h-3a2 2 0 01-2-2v-3M12 3l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z"/></svg>
+        View scoreboard
+      </button>
+    </div>
+    <p style="font-size:11px;color:var(--text3);margin-top:2rem">Teacher: teacher / 1234 &nbsp;·&nbsp; Students: ENG101 / learn</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ TEACHER LOGIN -->
+<div class="screen" id="sc-teacher-login">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <h1>Teacher login</h1>
+      <p>Password-protected access</p>
+    </div>
+    <div class="field"><label>Username</label><input type="text" id="t-user" placeholder="teacher" autocomplete="username"></div>
+    <div class="field"><label>Password</label><input type="password" id="t-pass" placeholder="••••••" autocomplete="current-password"></div>
+    <div id="t-err" style="font-size:12px;color:var(--red);margin-bottom:8px;display:none">Wrong username or password.</div>
+    <button class="btn btn-p btn-full" onclick="teacherLogin()">Sign in</button>
+    <button class="btn btn-full" style="margin-top:8px" onclick="go('sc-home')">← Back</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ STUDENT LOGIN -->
+<div class="screen" id="sc-student-login">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <h1>Student login</h1>
+      <p>Enter your details to join</p>
+    </div>
+    <div class="field"><label>Your name</label><input type="text" id="s-name" placeholder="e.g. Ploy"></div>
+    <div class="field"><label>Class code</label><input type="text" id="s-code" placeholder="e.g. ENG101" autocomplete="off"></div>
+    <div class="field"><label>Password</label><input type="password" id="s-pass" placeholder="••••••" autocomplete="current-password"></div>
+    <div id="s-err" style="font-size:12px;color:var(--red);margin-bottom:8px;display:none">Wrong class code or password.</div>
+    <button class="btn btn-p btn-full" onclick="studentLogin()">Enter class</button>
+    <button class="btn btn-full" style="margin-top:8px" onclick="go('sc-home')">← Back</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ TEACHER DASHBOARD -->
+<div class="screen" id="sc-teacher">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M3 19h18M5 19V7l7-4 7 4v12M9 19v-6h6v6"/></svg>
+        Teacher dashboard
+      </div>
+      <div class="topbar-sub" id="t-date">Loading...</div>
+    </div>
+    <button class="btn btn-sm" onclick="go('sc-home')">Sign out</button>
+  </div>
+  <div class="nav">
+    <button class="nav-btn on" id="tn0" onclick="tpanel('tp-drill',0)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2zM14 4v5h5M12 11v6M9 14h6"/></svg>
+      Drill
+    </button>
+    <button class="nav-btn" id="tn1" onclick="tpanel('tp-subs',1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16l-8 4-8-4V8l8-4 8 4v8z"/><path d="M12 4v16M4 8l8 4 8-4"/></svg>
+      Submissions
+    </button>
+    <button class="nav-btn" id="tn2" onclick="tpanel('tp-topics',2)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 3-1.5 5.5-4 7v2H9v-2c-2.5-1.5-4-4-4-7a7 7 0 017-7z"/><path d="M9 21h6"/></svg>
+      Topics
+    </button>
+    <button class="nav-btn" id="tn3" onclick="tpanel('tp-analytics',3)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-8"/></svg>
+      Analytics
+    </button>
+  </div>
+
+  <div class="content">
+
+    <!-- DRILL PANEL -->
+    <div class="panel on" id="tp-drill">
+      <span class="lbl">Today's drill</span>
+      <div class="card">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px">
+          <div>
+            <div style="font-size:15px;font-weight:600;color:var(--text)" id="drill-title">David Attenborough turns 100</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:3px">Beginner &amp; Intermediate · 5 min</div>
+          </div>
+          <span class="badge bi">Live</span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span class="badge bs">4 questions</span>
+          <span class="badge bs">4 vocab words</span>
+          <span class="badge bw">Due tonight</span>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+        <button class="btn btn-p btn-sm" onclick="openNewDrill()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          Post new drill
+        </button>
+        <button class="btn btn-sm" onclick="tpanel('tp-topics',2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 3-1.5 5.5-4 7v2H9v-2c-2.5-1.5-4-4-4-7a7 7 0 017-7z"/></svg>
+          Pick from topics
+        </button>
+      </div>
+
+      <span class="lbl">How points work</span>
+      <div class="card">
+        <div class="pts-row"><span>⭐ Stars × 20</span><span class="pts-val">up to 100 pts</span></div>
+        <div class="pts-row"><span>⚡ Early submission (before 6pm)</span><span class="pts-val">+10 pts</span></div>
+        <div class="pts-row"><span>🔥 Streak bonus (per day)</span><span class="pts-val">+5 pts</span></div>
+      </div>
+
+      <span class="lbl">Post a new drill manually</span>
+      <div class="card">
+        <div class="field"><label>News title</label><input type="text" id="new-drill-title" placeholder="e.g. Scientists discover water on Mars"></div>
+        <div class="field"><label>News summary (students will read this)</label><textarea id="new-drill-text" rows="4" placeholder="Write a short, simple news story here..."></textarea></div>
+        <div class="field"><label>Questions (one per line)</label><textarea id="new-drill-qs" rows="3" placeholder="Do you think this is important? Why?&#10;What would you do in this situation?"></textarea></div>
+        <button class="btn btn-p btn-sm" onclick="postDrill()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          Post drill now
+        </button>
+        <div id="drill-ok" style="display:none;font-size:12px;color:var(--green);margin-top:8px">✓ Drill posted! Students can see it now.</div>
+      </div>
+    </div>
+
+    <!-- SUBMISSIONS PANEL -->
+    <div class="panel" id="tp-subs">
+      <div class="met-grid">
+        <div class="met"><div class="v">12</div><div class="l">Submitted</div></div>
+        <div class="met"><div class="v">6</div><div class="l">Pending</div></div>
+        <div class="met"><div class="v">78%</div><div class="l">Avg score</div></div>
+      </div>
+      <span class="lbl">Grade submissions</span>
+      <div class="card" style="padding:4px 16px" id="sub-list">
+        <div class="stu-row">
+          <div class="av">PA</div>
+          <div style="flex:1;min-width:0">
+            <div class="stu-name">Ploy A.</div>
+            <div class="stu-meta">Typed + voice · 2h ago</div>
+          </div>
+          <span class="badge bs" style="flex-shrink:0">Done</span>
+          <input class="score-in" type="number" min="1" max="5" value="4" title="Stars 1–5">
+          <input class="comment-in" type="text" placeholder="Comment..." value="Great effort!">
+        </div>
+        <div class="stu-row">
+          <div class="av" style="background:var(--green-bg);color:var(--green-text)">NK</div>
+          <div style="flex:1;min-width:0">
+            <div class="stu-name">Nat K.</div>
+            <div class="stu-meta">Typed only · 4h ago</div>
+          </div>
+          <span class="badge bs" style="flex-shrink:0">Done</span>
+          <input class="score-in" type="number" min="1" max="5" value="3" title="Stars 1–5">
+          <input class="comment-in" type="text" placeholder="Comment..." value="Watch your grammar">
+        </div>
+        <div class="stu-row">
+          <div class="av" style="background:var(--amber-bg);color:var(--amber-text)">MW</div>
+          <div style="flex:1;min-width:0">
+            <div class="stu-name">Min W.</div>
+            <div class="stu-meta">Not submitted yet</div>
+          </div>
+          <span class="badge bw" style="flex-shrink:0">Pending</span>
+          <input class="score-in" type="number" min="1" max="5" placeholder="–" title="Stars 1–5">
+          <input class="comment-in" type="text" placeholder="Comment...">
+        </div>
+        <div class="stu-row">
+          <div class="av" style="background:var(--red-bg);color:var(--red-text)">SP</div>
+          <div style="flex:1;min-width:0">
+            <div class="stu-name">Som P.</div>
+            <div class="stu-meta">Not submitted yet</div>
+          </div>
+          <span class="badge bd" style="flex-shrink:0">Missing</span>
+          <input class="score-in" type="number" min="1" max="5" placeholder="–" title="Stars 1–5">
+          <input class="comment-in" type="text" placeholder="Comment...">
+        </div>
+      </div>
+      <button class="btn btn-p btn-sm" onclick="saveSub()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+        Save all scores
+      </button>
+      <div id="save-ok" style="display:none;font-size:12px;color:var(--green);margin-top:8px">✓ Scores saved! Students can see their stars now.</div>
+    </div>
+
+    <!-- TOPICS PANEL -->
+    <div class="panel" id="tp-topics">
+      <span class="lbl">Student suggestions</span>
+      <div class="card" style="padding:4px 16px">
+        <div class="sug-item">
+          <div style="flex:1">
+            <div class="sug-txt">Space exploration and life on Mars</div>
+            <div class="sug-who">Nat K. · 3 votes</div>
+          </div>
+          <button class="btn btn-p btn-sm" onclick="useTopic('Space exploration and life on Mars')">Use</button>
+        </div>
+        <div class="sug-item">
+          <div style="flex:1">
+            <div class="sug-txt">Street food in Thailand</div>
+            <div class="sug-who">Fah S. · 5 votes</div>
+          </div>
+          <button class="btn btn-p btn-sm" onclick="useTopic('Street food in Thailand')">Use</button>
+        </div>
+        <div class="sug-item">
+          <div style="flex:1">
+            <div class="sug-txt">Social media and mental health</div>
+            <div class="sug-who">Pop T. · 2 votes</div>
+          </div>
+          <button class="btn btn-p btn-sm" onclick="useTopic('Social media and mental health')">Use</button>
+        </div>
+      </div>
+      <div id="topic-set-ok" style="display:none;font-size:12px;color:var(--green);margin-bottom:8px">✓ Topic set as today's drill title.</div>
+
+      <span class="lbl">Generate by tags</span>
+      <div class="tag-pick" id="tag-list">
+        <div class="tag" onclick="toggleTag(this)">Animals</div>
+        <div class="tag" onclick="toggleTag(this)">Technology</div>
+        <div class="tag" onclick="toggleTag(this)">Food</div>
+        <div class="tag" onclick="toggleTag(this)">Sport</div>
+        <div class="tag" onclick="toggleTag(this)">Environment</div>
+        <div class="tag" onclick="toggleTag(this)">Travel</div>
+        <div class="tag" onclick="toggleTag(this)">Health</div>
+        <div class="tag" onclick="toggleTag(this)">Famous people</div>
+        <div class="tag" onclick="toggleTag(this)">Music</div>
+        <div class="tag" onclick="toggleTag(this)">Thai culture</div>
+      </div>
+      <button class="btn btn-p btn-sm" style="margin-top:4px" onclick="genFromTags()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Set tags as drill topic
+      </button>
+      <div id="tag-ok" style="display:none;font-size:12px;color:var(--green);margin-top:8px">✓ Tags set! Go to Drill tab to write the content.</div>
+    </div>
+
+    <!-- ANALYTICS PANEL -->
+    <div class="panel" id="tp-analytics">
+      <div class="met-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="met"><div class="v">78%</div><div class="l">Avg score</div></div>
+        <div class="met"><div class="v">67%</div><div class="l">Completion</div></div>
+        <div class="met"><div class="v">5</div><div class="l">Day streak</div></div>
+        <div class="met"><div class="v">18</div><div class="l">Students</div></div>
+      </div>
+      <span class="lbl">Completion this week</span>
+      <div class="card">
+        <div class="bar-chart" aria-label="Daily completion rates this week">
+          <div class="bc-col"><div class="bc-bar" style="height:56px"></div><div class="bc-lbl">Mon</div></div>
+          <div class="bc-col"><div class="bc-bar" style="height:70px"></div><div class="bc-lbl">Tue</div></div>
+          <div class="bc-col"><div class="bc-bar" style="height:60px"></div><div class="bc-lbl">Wed</div></div>
+          <div class="bc-col"><div class="bc-bar" style="height:44px"></div><div class="bc-lbl">Thu</div></div>
+          <div class="bc-col"><div class="bc-bar" style="height:52px;background:#057a55"></div><div class="bc-lbl">Today</div></div>
+        </div>
+      </div>
+      <span class="lbl">Common mistakes this week</span>
+      <div class="card" style="padding:4px 16px">
+        <div class="pts-row"><span>Adjective + -s error (hots, goods)</span><span class="badge bd">8 students</span></div>
+        <div class="pts-row"><span>"I am like" instead of "I like"</span><span class="badge bw">5 students</span></div>
+        <div class="pts-row"><span>Missing article (a/an/the)</span><span class="badge bw">4 students</span></div>
+      </div>
+      <div class="notice">Tip: Go to Drill tab → Post new drill to create a grammar mini-lesson targeting these mistakes.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ STUDENT APP -->
+<div class="screen" id="sc-student">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title" id="s-hello">👋 Welcome!</div>
+      <div class="topbar-sub" id="s-streak-top">Loading...</div>
+    </div>
+    <button class="btn btn-sm" onclick="go('sc-home')">Sign out</button>
+  </div>
+  <div class="nav">
+    <button class="nav-btn on" id="sn0" onclick="spanel('sp-drill',0)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+      Today
+    </button>
+    <button class="nav-btn" id="sn1" onclick="spanel('sp-mistakes',1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Mistakes
+    </button>
+    <button class="nav-btn" id="sn2" onclick="spanel('sp-mystats',2)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-8"/></svg>
+      My stats
+    </button>
+    <button class="nav-btn" id="sn3" onclick="spanel('sp-suggest',3)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 3-1.5 5.5-4 7v2H9v-2c-2.5-1.5-4-4-4-7a7 7 0 017-7z"/><path d="M9 21h6"/></svg>
+      Suggest
+    </button>
+  </div>
+
+  <div class="content">
+
+    <!-- DRILL PANEL -->
+    <div class="panel on" id="sp-drill">
+      <span class="lbl">Today's story</span>
+      <div class="drill-block" id="s-drill-text">
+        David Attenborough is a famous British man who makes nature documentaries — films about animals and the natural world. This week, he celebrated his <strong>100th birthday</strong>. People in the UK call him a <strong>national hero</strong>. He is still working today, aged 100.
+      </div>
+
+      <span class="lbl">Pick a question to answer</span>
+      <div class="q-chips">
+        <div class="chip" onclick="pickQ(this,'Do you like watching nature documentaries? Why or why not?')">Do you like nature docs?</div>
+        <div class="chip" onclick="pickQ(this,'Who is someone you admire and why?')">Who do you admire?</div>
+        <div class="chip" onclick="pickQ(this,'What is the secret to a long happy life?')">Secret to a long life?</div>
+      </div>
+      <div id="q-display" style="display:none;font-size:13px;padding:10px 12px;background:var(--blue-bg);color:var(--blue-text);border-radius:var(--radius);margin-bottom:10px;font-weight:500"></div>
+
+      <span class="lbl">Type your answer</span>
+      <textarea id="s-text" rows="4" placeholder="Write your answer here in English..."></textarea>
+
+      <span class="lbl" style="margin-top:14px">Or record your voice</span>
+      <button class="rec-btn" id="rec-btn" onclick="toggleRec()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+        <span id="rec-lbl">Tap to record</span>
+      </button>
+      <div id="rec-st" style="font-size:12px;color:var(--text3);text-align:center;min-height:18px;margin-top:5px"></div>
+
+      <button class="btn btn-p btn-full" style="margin-top:14px" onclick="submitDrill()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        Submit answer
+      </button>
+      <div id="submit-ok" style="display:none;font-size:13px;color:var(--green);text-align:center;margin-top:10px;padding:10px;background:var(--green-bg);border-radius:var(--radius)">✓ Submitted! Your teacher will give you stars and a comment soon.</div>
+      <div class="notice">Your teacher will review and give you ⭐ stars + a short comment. Points appear on the scoreboard after grading.</div>
+    </div>
+
+    <!-- MISTAKES PANEL -->
+    <div class="panel" id="sp-mistakes">
+      <span class="lbl">Your mistakes &amp; corrections</span>
+      <div class="card" style="padding:4px 16px">
+        <div class="mistake-row">
+          <div style="font-size:11px;color:var(--text3);margin-bottom:5px;font-family:'DM Mono',monospace">May 9 · Describe the weather</div>
+          <div class="err">✗ "The weather is very <u>hots</u> today."</div>
+          <div class="fix">✓ "The weather is very <strong>hot</strong> today." — adjectives don't take -s</div>
+        </div>
+        <div class="mistake-row">
+          <div style="font-size:11px;color:var(--text3);margin-bottom:5px;font-family:'DM Mono',monospace">May 8 · Your favourite food</div>
+          <div class="err">✗ "I <u>am like</u> spicy food."</div>
+          <div class="fix">✓ "I <strong>like</strong> spicy food." — use 'like', not 'am like'</div>
+        </div>
+        <div class="mistake-row">
+          <div style="font-size:11px;color:var(--text3);margin-bottom:5px;font-family:'DM Mono',monospace">May 7 · Your hometown</div>
+          <div class="err">✗ "I live in <u>a</u> Bangkok."</div>
+          <div class="fix">✓ "I live in <strong>Bangkok.</strong>" — no article before city names</div>
+        </div>
+      </div>
+      <div class="notice">Review these corrections before your next drill. Your teacher can see patterns in the class mistakes too.</div>
+    </div>
+
+    <!-- MY STATS PANEL -->
+    <div class="panel" id="sp-mystats">
+      <div class="met-grid">
+        <div class="met"><div class="v">440</div><div class="l">Total pts</div></div>
+        <div class="met"><div class="v">5</div><div class="l">Day streak 🔥</div></div>
+        <div class="met"><div class="v">4.2</div><div class="l">Avg stars</div></div>
+      </div>
+      <span class="lbl">This week's scores</span>
+      <div class="card" style="padding:4px 16px">
+        <div class="stu-row">
+          <div style="flex:1;font-size:13px;color:var(--text2);font-family:'DM Mono',monospace">Mon</div>
+          <div class="stars" style="margin:0">
+            <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-left:8px;font-family:'DM Mono',monospace">92 pts</div>
+        </div>
+        <div class="stu-row">
+          <div style="flex:1;font-size:13px;color:var(--text2);font-family:'DM Mono',monospace">Tue</div>
+          <div class="stars" style="margin:0">
+            <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-left:8px;font-family:'DM Mono',monospace">115 pts</div>
+        </div>
+        <div class="stu-row">
+          <div style="flex:1;font-size:13px;color:var(--text2);font-family:'DM Mono',monospace">Wed</div>
+          <div class="stars" style="margin:0">
+            <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-left:8px;font-family:'DM Mono',monospace">75 pts</div>
+        </div>
+        <div class="stu-row">
+          <div style="flex:1;font-size:13px;color:var(--text2);font-family:'DM Mono',monospace">Thu</div>
+          <div class="stars" style="margin:0">
+            <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-left:8px;font-family:'DM Mono',monospace">98 pts</div>
+        </div>
+        <div class="stu-row">
+          <div style="flex:1;font-size:13px;color:var(--text2);font-family:'DM Mono',monospace">Today</div>
+          <div style="font-size:12px;color:var(--text3);flex:1;text-align:right">Not submitted yet</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUGGEST PANEL -->
+    <div class="panel" id="sp-suggest">
+      <span class="lbl">Suggest a topic</span>
+      <div class="field"><label>Your idea for tomorrow's drill</label><input type="text" id="sug-in" placeholder="e.g. Thai festivals, K-pop, electric cars..."></div>
+      <button class="btn btn-p btn-sm" onclick="submitSug()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        Send suggestion
+      </button>
+      <div id="sug-ok" style="display:none;font-size:12px;color:var(--green);margin-top:8px">✓ Suggestion sent! Your teacher will review it.</div>
+
+      <span class="lbl" style="margin-top:1.25rem">Vote on suggestions</span>
+      <div class="card" style="padding:4px 16px">
+        <div class="sug-item">
+          <div style="flex:1">
+            <div class="sug-txt">Space exploration and life on Mars</div>
+            <div class="sug-who">by Nat K.</div>
+          </div>
+          <button class="vote-btn" id="v1" onclick="vote('v1','vc1')">▲ <span id="vc1">3</span></button>
+        </div>
+        <div class="sug-item">
+          <div style="flex:1">
+            <div class="sug-txt">Street food in Thailand</div>
+            <div class="sug-who">by Fah S.</div>
+          </div>
+          <button class="vote-btn" id="v2" onclick="vote('v2','vc2')">▲ <span id="vc2">5</span></button>
+        </div>
+        <div class="sug-item">
+          <div style="flex:1">
+            <div class="sug-txt">Social media and mental health</div>
+            <div class="sug-who">by Pop T.</div>
+          </div>
+          <button class="vote-btn" id="v3" onclick="vote('v3','vc3')">▲ <span id="vc3">2</span></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ SCOREBOARD (PUBLIC) -->
+<div class="screen" id="sc-board-public">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">🏆 Weekly scoreboard</div>
+      <div class="topbar-sub" id="board-date">Week of May 10, 2026</div>
+    </div>
+    <button class="btn btn-sm" onclick="go('sc-home')">← Back</button>
+  </div>
+  <div class="content">
+    <div class="card" style="padding:4px 16px">
+      <div class="board-row">
+        <div class="rank g">🏆</div>
+        <div style="flex:1;font-size:14px;font-weight:600;color:var(--text)">Ploy A.</div>
+        <div class="bar-w"><div class="bar" style="width:100%;background:var(--blue)"></div></div>
+        <div class="pts">440</div>
+        <span class="badge bi" style="margin-left:6px">🔥 5d</span>
+      </div>
+      <div class="board-row">
+        <div class="rank">2</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Nat K.</div>
+        <div class="bar-w"><div class="bar" style="width:88%;background:#059669"></div></div>
+        <div class="pts">388</div>
+        <span class="badge bs" style="margin-left:6px">🔥 4d</span>
+      </div>
+      <div class="board-row">
+        <div class="rank">3</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Fah S.</div>
+        <div class="bar-w"><div class="bar" style="width:80%;background:#059669"></div></div>
+        <div class="pts">352</div>
+        <span class="badge bs" style="margin-left:6px">🔥 3d</span>
+      </div>
+      <div class="board-row">
+        <div class="rank">4</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Pop T.</div>
+        <div class="bar-w"><div class="bar" style="width:73%;background:#9ca3af"></div></div>
+        <div class="pts">322</div>
+      </div>
+      <div class="board-row">
+        <div class="rank">5</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Min W.</div>
+        <div class="bar-w"><div class="bar" style="width:63%;background:#9ca3af"></div></div>
+        <div class="pts">278</div>
+      </div>
+      <div class="board-row">
+        <div class="rank">6</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Som P.</div>
+        <div class="bar-w"><div class="bar" style="width:52%;background:#9ca3af"></div></div>
+        <div class="pts">229</div>
+      </div>
+      <div class="board-row">
+        <div class="rank">7</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Bee N.</div>
+        <div class="bar-w"><div class="bar" style="width:44%;background:#9ca3af"></div></div>
+        <div class="pts">194</div>
+      </div>
+      <div class="board-row">
+        <div class="rank">8</div>
+        <div style="flex:1;font-size:14px;color:var(--text)">Arm P.</div>
+        <div class="bar-w"><div class="bar" style="width:36%;background:#d1d5db"></div></div>
+        <div class="pts">158</div>
+      </div>
+    </div>
+    <div class="notice">
+      <strong>How points work:</strong> Stars × 20 + early bird bonus (+10 pts if submitted before 6pm) + daily streak bonus (+5 pts per consecutive day). Submit every day to grow your streak! 🔥
+    </div>
+  </div>
+</div>
+
+</div><!-- end .app -->
+
+<script>
+var currentStudent = '';
+
+function go(id) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); });
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+
+function tpanel(id, idx) {
+  document.querySelectorAll('#sc-teacher .panel').forEach(function(p){ p.classList.remove('on'); });
+  document.getElementById(id).classList.add('on');
+  for(var i=0;i<4;i++) document.getElementById('tn'+i).classList.remove('on');
+  document.getElementById('tn'+idx).classList.add('on');
+}
+
+function spanel(id, idx) {
+  document.querySelectorAll('#sc-student .panel').forEach(function(p){ p.classList.remove('on'); });
+  document.getElementById(id).classList.add('on');
+  for(var i=0;i<4;i++) document.getElementById('sn'+i).classList.remove('on');
+  document.getElementById('sn'+idx).classList.add('on');
+}
+
+function teacherLogin() {
+  var u = document.getElementById('t-user').value.trim();
+  var p = document.getElementById('t-pass').value;
+  if (u === 'teacher' && p === '1234') {
+    document.getElementById('t-err').style.display = 'none';
+    var d = new Date();
+    document.getElementById('t-date').textContent = d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    go('sc-teacher');
+  } else {
+    document.getElementById('t-err').style.display = 'block';
+  }
+}
+
+function studentLogin() {
+  var n = document.getElementById('s-name').value.trim();
+  var c = document.getElementById('s-code').value.trim().toUpperCase();
+  var p = document.getElementById('s-pass').value;
+  if (n && c === 'ENG101' && p === 'learn') {
+    currentStudent = n;
+    document.getElementById('s-hello').textContent = 'Hi, ' + n + '! 👋';
+    document.getElementById('s-streak-top').textContent = '🔥 5-day streak · 440 pts this week';
+    document.getElementById('s-err').style.display = 'none';
+    go('sc-student');
+  } else {
+    document.getElementById('s-err').style.display = 'block';
+  }
+}
+
+function pickQ(el, q) {
+  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+  el.classList.add('on');
+  var d = document.getElementById('q-display');
+  d.style.display = 'block';
+  d.textContent = '💬 ' + q;
+}
+
+var recOn = false, recTimer = null, recSecs = 0;
+function toggleRec() {
+  var btn = document.getElementById('rec-btn');
+  var lbl = document.getElementById('rec-lbl');
+  var st = document.getElementById('rec-st');
+  if (!recOn) {
+    recOn = true; recSecs = 0;
+    btn.classList.add('on');
+    lbl.textContent = 'Recording… tap to stop';
+    recTimer = setInterval(function(){ recSecs++; st.textContent = recSecs + 's recorded'; }, 1000);
+  } else {
+    recOn = false; clearInterval(recTimer);
+    btn.classList.remove('on');
+    lbl.textContent = '✓ Recording saved (' + recSecs + 's) — tap to re-record';
+    st.textContent = 'Voice answer ready to submit.';
+  }
+}
+
+function submitDrill() {
+  var txt = document.getElementById('s-text').value.trim();
+  var hasRec = document.getElementById('rec-st').textContent.includes('ready');
+  if (!txt && !hasRec) {
+    alert('Please type your answer or record your voice first!');
+    return;
+  }
+  document.getElementById('submit-ok').style.display = 'block';
+  document.getElementById('s-text').value = '';
+  document.getElementById('rec-lbl').textContent = 'Tap to record';
+  document.getElementById('rec-st').textContent = '';
+  document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+  document.getElementById('q-display').style.display = 'none';
+}
+
+function saveSub() {
+  var ok = document.getElementById('save-ok');
+  ok.style.display = 'block';
+  setTimeout(function(){ ok.style.display = 'none'; }, 3000);
+}
+
+function postDrill() {
+  var t = document.getElementById('new-drill-title').value.trim();
+  var tx = document.getElementById('new-drill-text').value.trim();
+  if (!t || !tx) { alert('Please fill in the title and news summary.'); return; }
+  document.getElementById('drill-title').textContent = t;
+  document.getElementById('s-drill-text').innerHTML = tx;
+  var ok = document.getElementById('drill-ok');
+  ok.style.display = 'block';
+  setTimeout(function(){ ok.style.display = 'none'; }, 3000);
+}
+
+function openNewDrill() {
+  tpanel('tp-drill', 0);
+  setTimeout(function(){
+    document.getElementById('new-drill-title').focus();
+  }, 100);
+}
+
+function useTopic(topic) {
+  document.getElementById('new-drill-title').value = topic;
+  tpanel('tp-drill', 0);
+  var ok = document.getElementById('topic-set-ok');
+  ok.style.display = 'block';
+  setTimeout(function(){ ok.style.display = 'none'; }, 2500);
+}
+
+function toggleTag(el) { el.classList.toggle('on'); }
+
+function genFromTags() {
+  var tags = [];
+  document.querySelectorAll('#tag-list .tag.on').forEach(function(t){ tags.push(t.textContent); });
+  if (!tags.length) { alert('Pick at least one tag first!'); return; }
+  document.getElementById('new-drill-title').value = tags.join(' + ');
+  tpanel('tp-drill', 0);
+  var ok = document.getElementById('tag-ok');
+  ok.style.display = 'block';
+  setTimeout(function(){ ok.style.display = 'none'; }, 2500);
+}
+
+function submitSug() {
+  var v = document.getElementById('sug-in').value.trim();
+  if (!v) { alert('Please type a topic idea first!'); return; }
+  var ok = document.getElementById('sug-ok');
+  ok.style.display = 'block';
+  document.getElementById('sug-in').value = '';
+  setTimeout(function(){ ok.style.display = 'none'; }, 3000);
+}
+
+function vote(btnId, countId) {
+  var btn = document.getElementById(btnId);
+  var cnt = document.getElementById(countId);
+  var n = parseInt(cnt.textContent);
+  if (btn.classList.contains('voted')) {
+    btn.classList.remove('voted');
+    cnt.textContent = n - 1;
+  } else {
+    btn.classList.add('voted');
+    cnt.textContent = n + 1;
+  }
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Enter') {
+    var s = document.querySelector('.screen.on');
+    if (s && s.id === 'sc-teacher-login') teacherLogin();
+    if (s && s.id === 'sc-student-login') studentLogin();
+  }
+});
+
+var d = new Date();
+var opts = {year:'numeric',month:'long',day:'numeric'};
+var ds = d.toLocaleDateString('en-US', opts);
+var bd = document.getElementById('board-date');
+if (bd) bd.textContent = 'Week of ' + ds;
+</script>
+</body>
+</html>
